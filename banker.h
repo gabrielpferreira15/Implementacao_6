@@ -1,21 +1,19 @@
 #ifndef BANKER_H
 #define BANKER_H
 
-#define NUMBER_OF_CUSTOMERS 5
-#define NUMBER_OF_RESOURCES 3
+extern int number_of_customers;
+extern int number_of_resources;
+extern int *available;       
+extern int **maximum;        
+extern int **allocation;     
+extern int **need;           
 
-extern int available[NUMBER_OF_RESOURCES];
+int request_resources(int customer_num, int request[], FILE *out);
+void release_resources(int customer_num, int release[], FILE *out);
+int is_safe_state(void);
 
-extern int maximum[NUMBER_OF_CUSTOMERS][NUMBER_OF_RESOURCES];
+void allocate_memory(void);
+void free_memory(void);
+void print_matrices(FILE *out);
 
-extern int allocation[NUMBER_OF_CUSTOMERS][NUMBER_OF_RESOURCES];
-
-extern int need[NUMBER_OF_CUSTOMERS][NUMBER_OF_RESOURCES];
-
-int request_resources(int customer_num, int request[]);
-
-void release_resources(int customer_num, int release[]);
-
-int is_safe_state();
-
-#endif
+#endif 
